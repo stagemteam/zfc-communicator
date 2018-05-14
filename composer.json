@@ -1,0 +1,31 @@
+{
+  "name": "stagemteam/zfc-communicator",
+  "description": "Zend Module Communicator",
+  "type": "library",
+  "license": "MIT",
+  "keywords": [
+    "communicator",
+    "calendar",
+    "stagem"
+  ],
+  "authors": [
+    {
+      "name": "Sergiy Popov",
+      "email": "popow.sergiy@gmail.com",
+      "homepage": "http://agere.com.ua/",
+      "role": "Developer"
+    },
+    {
+      "name": "Vlad Kozak",
+      "email": "vlad.gem.typ@gmail.com",
+      "homepage": "http://agere.com.ua/",
+      "role": "Developer"
+    }
+  ],
+  "minimum-stability": "stable",
+  "autoload": {
+    "psr-4": {
+      "Stagem\\Communicator\\": "src/"
+    }
+  }
+}
