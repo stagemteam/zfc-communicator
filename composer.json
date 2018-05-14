@@ -1,7 +1,7 @@
 {
-  "name": "stagemteam/zfc-communicator",
+  "name": "stagem/zfc-communicator",
   "description": "Zend Module Communicator",
-  "type": "library",
+  "type": "zf-module",
   "license": "MIT",
   "keywords": [
     "communicator",
@@ -22,7 +22,6 @@
       "role": "Developer"
     }
   ],
-  "minimum-stability": "stable",
   "autoload": {
     "psr-4": {
       "Stagem\\Communicator\\": "src/"
