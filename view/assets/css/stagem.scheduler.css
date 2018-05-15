@@ -1,0 +1,163 @@
+/* ====================START==============================================================================
+		@ua - Необхідно для відображення комунікатора
+		@en - It is necessary to display communicator
+*/
+.container-fluid #scheduler_here {
+height: 800px;
+width: 100%;
+border: 1px solid #cecece;
+}
+
+.dhx_cal_event div.dhx_footer,
+.dhx_cal_event.past_event div.dhx_footer,
+.dhx_cal_event.event_english div.dhx_footer,
+.dhx_cal_event.event_math div.dhx_footer,
+.dhx_cal_event.event_science div.dhx_footer {
+	margin-top: 0px;
+	height: 2px;
+}
+
+.dhx_cal_event_line:hover,
+.dhx_cal_event:hover .dhx_body,
+.dhx_cal_event.selected .dhx_body,
+.dhx_cal_event.dhx_cal_select_menu .dhx_body {
+	opacity: 0.8;
+}
+/* =======================END=========================================================================== */
+
+/* ====================START==============================================================================
+		@ua - Ці CSS селектори змінюються динамічно і залежать від значеннь "key": 'petrov', 'klim', 'tkachuk'
+		@en - These CSS selectors change dynamically and depend on values "key": 'petrov', 'klim', 'tkachuk'
+			var subject = [
+				{ key: 'petrov', label: 'Петров П.Г.'},
+				{ key: 'klim', label: 'Климентьев В.Г.'},
+				{ key: 'tkachuk', label: 'Ткачук Д.Р.'},
+			];
+
+	*/
+.dhx_cal_event.event_klymentev div, .dhx_cal_event_line.event_klymentev {
+	background-color: #FFA500 !important;
+	border-color: #a36800 !important;
+}
+
+.dhx_cal_event_clear.event_klymentev {
+	color: #FFA500 !important;
+}
+
+.dhx_cal_event.event_barskyy div, .dhx_cal_event_line.event_barskyy {
+	background-color: #FC5BD5 !important;
+	border-color: #698490 !important;
+}
+
+.dhx_cal_event_clear.event_barskyy {
+	color: #FC5BD5 !important;
+}
+
+.dhx_cal_event.event_shilenko div, .dhx_cal_event_line.event_shilenko {
+	background-color: #36BD14 !important;
+	border-color: #839595 !important;
+}
+
+.dhx_cal_event_clear.event_shilenko {
+	color: #36BD14 !important;
+}
+
+.dhx_cal_event.event_sabodash div, .dhx_cal_event_line.event_sabodash {
+	background-color: #5B9BE0 !important;
+	border-color: #839595 !important;
+}
+
+.dhx_cal_event_clear.event_sabodash {
+	color: #5B9BE0 !important;
+}
+
+.dhx_cal_event.event_yushchenko div, .dhx_cal_event_line.event_yushchenko {
+	background-color: #E00306 !important;
+	border-color: #839595 !important;
+}
+
+.dhx_cal_event_clear.event_yushchenko {
+	color: #E00306 !important;
+}
+
+/* =======================END=========================================================================== */
+
+
+
+/*=====================================START=============================================================
+	@ua - Це потрібно для позначок кольорів для лікарів
+	@en - This is to label colors for doctors
+*/
+.doctors h5 {
+	margin-left: 25px;
+	width: 200px;
+}
+.circle-color {
+	width: 15px;
+	height: 15px;
+	border-radius: 50%;
+}
+
+.color-1 {
+	background: #FFA500;
+}
+
+.color-2 {
+	background: #FC5BD5;
+}
+
+.color-3 {
+	background: #36BD14;
+}
+
+.color-4 {
+	background: #5B9BE0;
+}
+
+.color-5 {
+	background: #E00306;
+}
+/*=========================================END=========================================================
+
+/*=========================================START=========================================================
+	@ua - Тут можна визначити колір або фон для вихідних днів (субота та неділя)
+	@en - You can determine the color or background for the weekend (Saturday and Sunday)
+*/
+.dhx_scale_holder_now.weekday, .dhx_scale_holder.weekday {
+	background-image: url(/assets/imgs/week_bg.png);
+}
+
+
+/* ===========================================END======================================================= */
+
+/* =============================================START=====================================================
+	@ua - Необхідні поправки
+	@en - Necessary amendments
+	*/
+.dhx_section_time select {
+	width: auto;
+	height: auto;
+	margin-bottom: 20px;
+}
+
+.dhx_cal_ltext select {
+	height: 20px;
+}
+
+.dhx_cal_header {
+	height: 35px !important;
+}
+
+.dhx_scale_bar {
+	height: 33px !important;
+}
+
+.dhx_scheduler_month .dhx_cal_data {
+	top: 96px !important;
+}
+
+.dhx_scheduler_month .dhx_cal_header {
+	left: 6px !important;
+}
+/* ===========================================END======================================================= */
+
