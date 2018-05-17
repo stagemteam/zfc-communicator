@@ -15,15 +15,13 @@
 
 namespace Stagem\Communicator;
 
-
-
 return [
-
     'assetic_configuration' => require_once 'assets.config.php',
 
     'actions' => [
-        'communicator' => __NAMESPACE__ . '\Action'
+        'communicator' => __NAMESPACE__ . '\Action',
     ],
+
     'doctrine' => [
         'driver' => [
             __NAMESPACE__ . '_driver' => [
@@ -38,6 +36,7 @@ return [
             ],
         ],
     ],
+
     'view_manager' => [
         'template_path_stack' => [
             __NAMESPACE__ => __DIR__ . '/../view',

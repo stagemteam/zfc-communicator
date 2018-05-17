@@ -20,8 +20,8 @@ return [
         ],
     ],
 
-    'routes' => [
-        'admin(.*)' => [
+    'controllers' => [
+        'communicator' => [
             '@communicator_libs_css',
             '@communicator_css',
             '@communicator_libs_js',
