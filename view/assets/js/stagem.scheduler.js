@@ -6,7 +6,7 @@ AgereCommunicator = {
             {key:2, label:"Барский М.Л. (каб. 401)"},
             {key:3, label:"Шиленко Д.Р. (каб. 405)"},
             {key:4, label:"Сабадош О.Р. (каб. 407)"},
-            {key:5, label:"Ющенко Л.Ф. (каб. 402)"},
+            {key:5, label:"Ющенко Л.Ф. (каб. 402)"}
         ];
 
         scheduler.locale.labels.unit_tab = "День"
@@ -53,56 +53,12 @@ AgereCommunicator = {
             scheduler.date.add_decade=function(date,inc){ return scheduler.date.add(date,inc*10,"day"); }
         });
 
-        /*scheduler.form_blocks["my_editor"] = {
-            render:function(sns) {
-                return "<div class='dhx_cal_ltext'><input type='text'></div>";
-            },
-            set_value:function(node, value, ev) {
-                node.childNodes[1].value = value || "";
-                node.childNodes[4].value = ev.details || "";
-            },
-            get_value:function(node, ev) {
-                ev.details = node.childNodes[4].value;
-                return node.childNodes[1].value;
-            },
-            focus:function(node) {
-                var a = node.childNodes[1];
-                a.select();
-                a.focus();
-            }
-        };*/
-
-        /*scheduler.config.lightbox.sections=[
-            {name:"name", height:130, map_to:"my_editor", type:"textarea" , focus:true},
-            {name:"dsda", height:130, map_to:"text", type:"textarea" , focus:true},
-            {name:"section_id", height:23, type:"select", options:sections},
-            {name:"time", height:72, type:"time", map_to:"auto"}
-        ]
-
-        scheduler.createUnitsView({
-            name:"unit",
-            property:"section_id",
-            list:sections,
-            days: 1
-        });*/
-
         scheduler.config.lightbox.sections=[
-            {name:"description", height:130, map_to:"text", type:"textarea" , focus:true},
-            {name:"dsda", height:130, map_to:"text", type:"textarea" , focus:true},
-            {name:"custom", height:23, type:"select", options:sections, map_to:"section_id", subject: 'english' },
+            {name: "ФИО", map_to: "fio", type: "textarea", height:40, filtering: true},
+            {name:"Doctor", height:23, type:"select", options:sections, map_to:"doctor", subject: 'english' },
+            {name:"Comment", height:80, map_to:"text2", type:"textarea" , focus:true},
             {name:"time", height:72, type:"time", map_to:"auto"}
-        ]
-
-        // we can block specific dates
-        /*scheduler.blockTime(new Date(2017,5,30), "fullday");
-        scheduler.blockTime(new Date(2017,6,3), [0,10*60]);*/
-
-        // or all day based on index (0 - Sunday, 6 - Saturday)
-        /*scheduler.blockTime({
-            days: 6,
-            zones: [0,8*60,18*60,24*60]
-        });
-        scheduler.blockTime(0, "fullday");*/
+        ];
 
         // or even block specific resources in our views
         scheduler.blockTime(1, [180,240,800,1000], { unit: [1,4] });
@@ -120,28 +76,11 @@ AgereCommunicator = {
             }
         });*/
 
-        /*scheduler.blockTime({
-            days: 6,
-            zones: [0,8*60,18*60,24*60]
-        });
-        scheduler.blockTime({
-            days: 6,
-            zones: [0,8*60,18*60,24*60]
-        });
-        scheduler.blockTime({
-            days: 6,
-            zones: [0,8*60,18*60,24*60]
-        });
-        scheduler.blockTime({
-            days: 6,
-            zones: [0,8*60,18*60,24*60]
-        });*/
-
-
         scheduler.createUnitsView({
             name:"unit",
             property:"section_id",
             list:sections,
+            //days: 3
         });
         scheduler.config.multi_day = true;
 
@@ -149,11 +88,15 @@ AgereCommunicator = {
         ///scheduler.load("./data/units.json", "json");
 
 
-        /*scheduler.attachEvent("onEventSave",function(id,ev,is_new){
+        scheduler.attachEvent("onEventSave",function(id,ev,is_new){
+            /*@todo-vlad Зробити створення пацієнта  */
+            createVisit(ev);
+
+
             console.log(ev);
             alert("Text too small");
             return false;
-        })*/
+        });
 
         scheduler.init('scheduler_here', new Date(), "unit");
 
@@ -189,3 +132,33 @@ jQuery(document).ready(function ($) {
 /*jQuery('#export_pdf').bind('click', function ($) {
 	scheduler.toPDF("http://dhtmlxscheduler.appspot.com/export/pdf", "color");
 })*/
+
+function createVisit(data) {
+
+    var newForm = document.createElement('form');
+    newForm.setAttribute('action', '/admin/patient/create');
+    newForm.setAttribute('method', 'POST');
+
+    var input1 = document.createElement('input');
+    input1.setAttribute('type', 'hidden');
+    input1.setAttribute('name', 'fio');
+    input1.setAttribute('value', data['fio']);
+
+    var input2 = document.createElement('input');
+    input2.setAttribute('type', 'hidden');
+    input2.setAttribute('name', 'doctor');
+    input2.setAttribute('value', data['fio']);
+
+    var submit = document.createElement('input');
+    submit.setAttribute('type', 'submit');
+    submit.setAttribute("value", "Save");
+    submit.setAttribute('id', 'savebutton');
+    $(submit).css('display', 'none');
+
+    newForm.appendChild(input1);
+    newForm.appendChild(input2);
+    newForm.appendChild(submit);
+    $(document.body).append(newForm);
+    $(newForm).submit();
+
+}

@@ -36,6 +36,7 @@ return [
                 'communicator_libs_css' => [
                     'assets' => [
                         'css/dhtmlx/dhtmlxscheduler_material.css',
+                        'css/dhtmlxCombo/skins/dhtmlxcombo_dhx_terrace.css',
                     ],
                 ],
                 'communicator_css' => [
@@ -58,6 +59,9 @@ return [
                         'js/dhtmlx/dhtmlxscheduler_html_templates.js',
                         'js/dhtmlx/dhtmlxscheduler_collision.js',
                         'js/dhtmlx/dhtmlxscheduler_limit.js',
+                        'js/dhtmlx/dhtmlxscheduler_editors.js',
+                        'js/dhtmlxCommon/dhtmlxcommon.js',
+                        'js/dhtmlxCombo/dhtmlxcombo.js',
                     ],
                 ],
                 'communicator_js' => [
