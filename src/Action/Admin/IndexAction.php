@@ -26,7 +26,19 @@ class IndexAction extends AbstractAction
 {
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
+        return $handler->handle($request->withAttribute(ViewModel::class, $this->action($request)));
+    }
+
+    /**
+     * Execute the request
+     *
+     * @param ServerRequestInterface $request
+     * @return ViewModel
+     */
+    public function action(ServerRequestInterface $request)
+    {
         $view = new ViewModel([]);
-        return $handler->handle($request->withAttribute(ViewModel::class, $view));
+
+        return $view;
     }
 }

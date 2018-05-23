@@ -8,21 +8,6 @@ width: 100%;
 border: 1px solid #cecece;
 }
 
-.dhx_cal_event div.dhx_footer,
-.dhx_cal_event.past_event div.dhx_footer,
-.dhx_cal_event.event_english div.dhx_footer,
-.dhx_cal_event.event_math div.dhx_footer,
-.dhx_cal_event.event_science div.dhx_footer {
-	margin-top: 0px;
-	height: 2px;
-}
-
-.dhx_cal_event_line:hover,
-.dhx_cal_event:hover .dhx_body,
-.dhx_cal_event.selected .dhx_body,
-.dhx_cal_event.dhx_cal_select_menu .dhx_body {
-	opacity: 0.8;
-}
 /* =======================END=========================================================================== */
 
 /* ====================START==============================================================================
@@ -35,50 +20,6 @@ border: 1px solid #cecece;
 			];
 
 	*/
-.dhx_cal_event.event_klymentev div, .dhx_cal_event_line.event_klymentev {
-	background-color: #FFA500 !important;
-	border-color: #a36800 !important;
-}
-
-.dhx_cal_event_clear.event_klymentev {
-	color: #FFA500 !important;
-}
-
-.dhx_cal_event.event_barskyy div, .dhx_cal_event_line.event_barskyy {
-	background-color: #FC5BD5 !important;
-	border-color: #698490 !important;
-}
-
-.dhx_cal_event_clear.event_barskyy {
-	color: #FC5BD5 !important;
-}
-
-.dhx_cal_event.event_shilenko div, .dhx_cal_event_line.event_shilenko {
-	background-color: #36BD14 !important;
-	border-color: #839595 !important;
-}
-
-.dhx_cal_event_clear.event_shilenko {
-	color: #36BD14 !important;
-}
-
-.dhx_cal_event.event_sabodash div, .dhx_cal_event_line.event_sabodash {
-	background-color: #5B9BE0 !important;
-	border-color: #839595 !important;
-}
-
-.dhx_cal_event_clear.event_sabodash {
-	color: #5B9BE0 !important;
-}
-
-.dhx_cal_event.event_yushchenko div, .dhx_cal_event_line.event_yushchenko {
-	background-color: #E00306 !important;
-	border-color: #839595 !important;
-}
-
-.dhx_cal_event_clear.event_yushchenko {
-	color: #E00306 !important;
-}
 
 /* =======================END=========================================================================== */
 
@@ -158,6 +99,29 @@ border: 1px solid #cecece;
 
 .dhx_scheduler_month .dhx_cal_header {
 	left: 6px !important;
+}
+.dhx_cal_event .dhx_body {
+	width: 100% !important;
+	min-height: 20px;
+}
+
+div.dhx_menu_icon {
+	margin: 0 !important;
+}
+
+.dhx_cal_navline .week_tab {
+	left: 103px !important;
+}
+.dhx_cal_navline .month_tab {
+	left: 192px !important;
+}
+
+.dhx_cal_navline  .unit_tab {
+	left: 14px !important;
+}
+.dhx_cal_light select {
+	height: 28px !important;
+	line-height: 25px !important;
 }
 /* ===========================================END======================================================= */
 

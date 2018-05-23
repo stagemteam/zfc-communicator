@@ -20,31 +20,29 @@ use Psr\Http\Message\ServerRequestInterface;
 use Interop\Http\Server\RequestHandlerInterface;
 use Stagem\ZfcAction\Page\AbstractAction;
 use Stagem\Communicator\Connector\SchedulerConnector\SchedulerConnector;
+use Zend\View\Model\ViewModel;
 
 class SyncAction extends AbstractAction
 {
 
-    protected $config;
-
-
-    public function __construct($config)
-    {
-        $this->config = $config;
-    }
-
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
-        $config = $this->config;
-        $db = $config['db'];
-        $table = $config['communicator']['table'];
-        $columns = $config['communicator']['columns'];
-        $res = mysqli_connect($db['hostname'], $db['username'], $db['password'], $db['database']);
+        return $handler->handle($request->withAttribute(ViewModel::class, $this->action($request)));
+    }
+
+    public function action(ServerRequestInterface $request)
+    {
+        ob_start();
+        //$db = 'dentistry';
+        $table = 'communicator';
+        $columns = [
+            'start_date',
+            'end_date',
+            'description',
+        ];
+        $res = mysqli_connect('127.0.0.1', 'root', '', 'dentistry');
         mysqli_set_charset($res, "utf8");
         $scheduler = new SchedulerConnector($res);
         $scheduler->render_table($table, implode($columns, ','));
-
-        
-        /*$view = new ViewModel([]);
-        return $handler->handle($request->withAttribute(ViewModel::class, $view));*/
     }
 }

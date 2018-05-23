@@ -1,5 +1,5 @@
 AgereCommunicator = {
-	init: function() {
+    init: function() {
 
         var sections=[
             {key:1, label:"Климентьев В.Г. (каб. 402)"},
@@ -9,15 +9,15 @@ AgereCommunicator = {
             {key:5, label:"Ющенко Л.Ф. (каб. 402)"},
         ];
 
-        scheduler.locale.labels.unit_tab = "Unit"
+        scheduler.locale.labels.unit_tab = "День"
         scheduler.locale.labels.section_custom="Section";
         scheduler.config.details_on_create=true;
         scheduler.config.details_on_dblclick=true;
         scheduler.config.xml_date="%Y-%m-%d %H:%i";
-        scheduler.config.first_hour = 9;
+        scheduler.config.first_hour = 7;
         scheduler.config.last_hour = 19;
         scheduler.config.time_step = 5;
-
+        scheduler.config.active_link_view="unit";
         var step = 15;
         var format = scheduler.date.date_to_str("%H:%i");
 
@@ -72,10 +72,10 @@ AgereCommunicator = {
             }
         };*/
 
-        scheduler.config.lightbox.sections=[
+        /*scheduler.config.lightbox.sections=[
             {name:"name", height:130, map_to:"my_editor", type:"textarea" , focus:true},
             {name:"dsda", height:130, map_to:"text", type:"textarea" , focus:true},
-            {name:"custom", height:23, type:"select", options:sections, map_to:"section_id" },
+            {name:"section_id", height:23, type:"select", options:sections},
             {name:"time", height:72, type:"time", map_to:"auto"}
         ]
 
@@ -84,7 +84,70 @@ AgereCommunicator = {
             property:"section_id",
             list:sections,
             days: 1
+        });*/
+
+        scheduler.config.lightbox.sections=[
+            {name:"description", height:130, map_to:"text", type:"textarea" , focus:true},
+            {name:"dsda", height:130, map_to:"text", type:"textarea" , focus:true},
+            {name:"custom", height:23, type:"select", options:sections, map_to:"section_id", subject: 'english' },
+            {name:"time", height:72, type:"time", map_to:"auto"}
+        ]
+
+        // we can block specific dates
+        /*scheduler.blockTime(new Date(2017,5,30), "fullday");
+        scheduler.blockTime(new Date(2017,6,3), [0,10*60]);*/
+
+        // or all day based on index (0 - Sunday, 6 - Saturday)
+        /*scheduler.blockTime({
+            days: 6,
+            zones: [0,8*60,18*60,24*60]
         });
+        scheduler.blockTime(0, "fullday");*/
+
+        // or even block specific resources in our views
+        scheduler.blockTime(1, [180,240,800,1000], { unit: [1,4] });
+        scheduler.blockTime(2, [180,240,800,1000], { unit: [1,4] });
+        scheduler.blockTime(3, [180,240,800,1000], { unit: [1,4] });
+        scheduler.blockTime(4, [180,240,800,1000], { unit: [1,4] });
+        scheduler.blockTime(5, [180,240,800,1000], { unit: [1,4] });
+        scheduler.blockTime(6, "fullday", { unit: [1,4] });
+        scheduler.blockTime(7, "fullday", { unit: [1,4] });
+        /*scheduler.blockTime({
+            days: 2,
+            zones: [180,240,800,1000],
+            sections: {
+                timeline: [1,4]
+            }
+        });*/
+
+        /*scheduler.blockTime({
+            days: 6,
+            zones: [0,8*60,18*60,24*60]
+        });
+        scheduler.blockTime({
+            days: 6,
+            zones: [0,8*60,18*60,24*60]
+        });
+        scheduler.blockTime({
+            days: 6,
+            zones: [0,8*60,18*60,24*60]
+        });
+        scheduler.blockTime({
+            days: 6,
+            zones: [0,8*60,18*60,24*60]
+        });*/
+
+
+        scheduler.createUnitsView({
+            name:"unit",
+            property:"section_id",
+            list:sections,
+        });
+        scheduler.config.multi_day = true;
+
+        //scheduler.init('scheduler_here',new Date(2017,5,30),"unit");
+        ///scheduler.load("./data/units.json", "json");
+
 
         /*scheduler.attachEvent("onEventSave",function(id,ev,is_new){
             console.log(ev);
@@ -92,27 +155,35 @@ AgereCommunicator = {
             return false;
         })*/
 
-        scheduler.init('scheduler_here',new Date(2017,5,30),"unit");
-        scheduler.load("units.xml");
-	},
+        scheduler.init('scheduler_here', new Date(), "unit");
 
-	show_minical: function() {
-	if (scheduler.isCalendarVisible())
-		scheduler.destroyCalendar();
-	else
-		scheduler.renderCalendar({
-			position:"dhx_minical_icon",
-			date:scheduler._date,
-			navigation:true,
-			handler:function(date,calendar){
-				scheduler.setCurrentView(date);
-				scheduler.destroyCalendar()
-			}
-		});
-	},
+        scheduler.setLoadMode("week");
+        scheduler.load("communicator/sync");
+        /*scheduler.load("/assets/events.xml",function(){
+            scheduler.showLightbox("1261150511");
+        });*/
+
+        var dp = new dataProcessor("communicator/sync");
+        dp.init(scheduler);
+    },
+
+    show_minical: function() {
+        if (scheduler.isCalendarVisible())
+            scheduler.destroyCalendar();
+        else
+            scheduler.renderCalendar({
+                position:"dhx_minical_icon",
+                date:scheduler._date,
+                navigation:true,
+                handler:function(date,calendar){
+                    scheduler.setCurrentView(date);
+                    scheduler.destroyCalendar()
+                }
+            });
+    },
 }
 jQuery(document).ready(function ($) {
-	AgereCommunicator.init();
+    AgereCommunicator.init();
 });
 
 /*jQuery('#export_pdf').bind('click', function ($) {

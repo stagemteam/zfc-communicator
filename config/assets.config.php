@@ -22,8 +22,8 @@ return [
 
     'controllers' => [
         'communicator' => [
-            '@communicator_libs_css',
             '@communicator_css',
+            '@communicator_libs_css',
             '@communicator_libs_js',
             '@communicator_js',
         ],
@@ -35,7 +35,7 @@ return [
             'collections' => [
                 'communicator_libs_css' => [
                     'assets' => [
-                        'css/dhtmlx/dhtmlxscheduler_flat.css',
+                        'css/dhtmlx/dhtmlxscheduler_material.css',
                     ],
                 ],
                 'communicator_css' => [
@@ -52,6 +52,11 @@ return [
                         'js/dhtmlx/dhtmlxscheduler_pdf.js',
                         'js/dhtmlx/locale/locale_ru.js',
                         'js/dhtmlx/dhtmlxscheduler_active_links.js',
+                        'js/dhtmlx/dhtmlxscheduler_limit.js',
+                        //'js/dhtmlx/dhtmlxscheduler_quick_info.js',
+                        'js/dhtmlx/dhtmlxscheduler_url.js',
+                        'js/dhtmlx/dhtmlxscheduler_html_templates.js',
+                        'js/dhtmlx/dhtmlxscheduler_collision.js',
                         'js/dhtmlx/dhtmlxscheduler_limit.js',
                     ],
                 ],
